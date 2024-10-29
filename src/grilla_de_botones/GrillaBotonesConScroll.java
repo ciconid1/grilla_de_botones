@@ -28,6 +28,7 @@ public class GrillaBotonesConScroll {
 	        JScrollPane scrollConGrilla = crearScrollConGrilla(panelGrilla);
 	        ventana.add(scrollConGrilla);
 
+	        ventana.setLocationRelativeTo(null);
 	        ventana.setVisible(true);
 	    }
 	//////////////////////////////////////////////////////////////////
@@ -49,7 +50,7 @@ public class GrillaBotonesConScroll {
         // Crear los botones y agregarlos al panel en la matriz traspuesta
         for (int y = 0; y < filas; y++) {  // Intercambiar el bucle de filas y columnas
             for (int x = 0; x < columnas; x++) {
-                String texto =  (x * 32 + 0) + "," + ((y * 32) - 12);  // Los índices permanecen igual para el texto
+                String texto =  (x * 32 - 396) + "," + ((y * 32) - 12);  // Los índices permanecen igual para el texto
                 JButton boton = new JButton(texto);
                 
 
@@ -60,8 +61,9 @@ public class GrillaBotonesConScroll {
                 boton.setPreferredSize(new Dimension(tamanoCelda, tamanoCelda));
                 
                 // Alinear texto a la izquierda
-                boton.setHorizontalTextPosition(SwingConstants.LEFT);
-                boton.setMargin(new Insets(0, 0, 0, 0));  // Ajusta el margen izquierdo
+                boton.setHorizontalTextPosition(SwingConstants.CENTER);
+                boton.setVerticalTextPosition(SwingConstants.TOP); 
+
 
                 // Agregar un ActionListener para manejar los eventos de clic en cada botón
                 boton.addActionListener(new ActionListener() {
@@ -70,46 +72,55 @@ public class GrillaBotonesConScroll {
                     	// Espacio libre
                     	if(!imprimir && boton.getBackground() == Color.white) {
                     		boton.setBackground(Color.gray);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/bloque_solido.gif"))));
                     		imprimir = true;
                     	}
                     	// BloqueSolido
                     	if(!imprimir && boton.getBackground() == Color.gray) {
                     		boton.setBackground(Color.red);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/ladrillo_solido.gif"))));
                     		imprimir = true;
                     	}
                     	// LadrilloSolido
                     	if(!imprimir && boton.getBackground() == Color.red) {
                     		boton.setBackground(Color.yellow);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/bloque_pregunta.gif"))));
                     		imprimir = true;
                     	}
                     	// BloqueDePregunta
                     	if(!imprimir && boton.getBackground() == Color.yellow) {
                     		boton.setBackground(Color.green);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/tuberia.gif"))));
                     		imprimir = true;
                     	}
                     	// Tuberia
                     	if(!imprimir && boton.getBackground() == Color.green) {
                     		boton.setBackground(Color.orange);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/goomba.gif"))));
                     		imprimir = true;
                     	}
                     	// Goomba
                     	if(!imprimir && boton.getBackground() == Color.orange) {
                     		boton.setBackground(Color.blue);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/koopa_troopa.gif"))));
                     		imprimir = true;
                     	}
                     	// KoopaTroopa
                     	if(!imprimir && boton.getBackground() == Color.blue) {
                     		boton.setBackground(Color.black);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/buzzy_beetle.gif"))));
                     		imprimir = true;
                     	}
                     	// BuzzyBeetle
                     	if(!imprimir && boton.getBackground() == Color.black) {
                     		boton.setBackground(Color.pink);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/spiny.gif"))));
                     		imprimir = true;
                     	}
                     	// Spiny
                     	if(!imprimir && boton.getBackground() == Color.pink) {
                     		boton.setBackground(Color.white);
+                    		boton.setIcon(new ImageIcon((getClass().getResource("/sprites/empty32x32.png"))));
                     		imprimir = true;
                     	}
                     		
@@ -148,6 +159,7 @@ public class GrillaBotonesConScroll {
                         }
                         imprimir = false;
                         System.out.println("#------------------- AQUI TIENE SU MAPA AMO --------------------------------");
+//                        System.out.println("Hilos: " + Thread.currentThread().getThreadGroup().activeCount());
                         }
                     }
                 );
